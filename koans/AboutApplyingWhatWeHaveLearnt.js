@@ -130,15 +130,17 @@ describe("About Applying What We Have Learnt", function() {
 	var largestThreeDigitProductPalindrome = function() {
 		var palindromes = [];
 
+		// test all numbers from 100-999
 		for(var i=999; i > 99; i--) {
 			for(var j=999; j > 99; j--) {
 				var str = String(i * j);
 
+				// push number to array if product is palindrome
 				if(str === str.split('').reverse().join('')) palindromes.push(str - 0);
 			}
 		}
 
-		return Math.max.apply(this, palindromes);
+		return Math.max.apply(this, palindromes); // get largest number in palindromes array
 	}
 
 	expect(largestThreeDigitProductPalindrome()).toBe(906609);
@@ -146,7 +148,21 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
       
-    
+	var smallestNumberDivisibleConsecutive = function(a, b) {
+		var i = b;
+		while(i++) {	// increment i "forever"
+			var divisible = true;
+
+			// check i with each number in range
+			for(var j=b; j >= a && divisible; j--) {
+				if(i % j !== 0) divisible = false;
+			}
+
+			if(divisible) return i;
+		}
+	}
+
+	expect(smallestNumberDivisibleConsecutive(1, 20)).toBe(232792560); // be careful - keep the number range small
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
