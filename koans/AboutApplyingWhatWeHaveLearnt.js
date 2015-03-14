@@ -126,7 +126,22 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    
+
+	var largestThreeDigitProductPalindrome = function() {
+		var palindromes = [];
+
+		for(var i=999; i > 99; i--) {
+			for(var j=999; j > 99; j--) {
+				var str = String(i * j);
+
+				if(str === str.split('').reverse().join('')) palindromes.push(str - 0);
+			}
+		}
+
+		return Math.max.apply(this, palindromes);
+	}
+
+	expect(largestThreeDigitProductPalindrome()).toBe(906609);
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
