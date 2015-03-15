@@ -166,11 +166,37 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
-    
+
+	var sumSquareDifference = function(x, y) {
+		return Math.abs((x * x + y * y) - Math.pow(x + y, 2));
+	}
+
+	expect(sumSquareDifference(9, 10)).toBe(180);    
   });
 
   it("should find the 10001st prime", function () {
 
+	var findNthPrime = function(n) {
+
+		if(n === 1) return 2;	// special case
+		if(n < 1) return -1;
+
+		var count = 1, i=3;
+		
+		// check for primes
+		do {
+			var isPrime = true;
+                        for(var j=3; j<i/2 && isPrime; j+=2) {
+                                if(i % j === 0) isPrime = false;
+                        }
+
+                        if(isPrime) count++;
+                        if(count ===  n) return i;
+		} while(i+=2);	// check odd numbers
+		
+	}
+
+	expect(findNthPrime(10001)).toBe(104743);
   });
   
 });
